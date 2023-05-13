@@ -11,6 +11,6 @@
     "skipLibCheck": true,
     "moduleResolution": "node16"
   },
-  "include": ["./deploy", "./test"],
+  "include": ["./scripts","./deploy", "./test"],
   "files": ["./hardhat.config.ts"]
 }
