@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import '@typechain/hardhat'
 import '@nomiclabs/hardhat-ethers'
 import '@openzeppelin/hardhat-upgrades'
+import "@nomicfoundation/hardhat-verify"
 import type { HardhatUserConfig } from "hardhat/config"
 import 'hardhat-deploy'
 
@@ -37,7 +38,24 @@ const config: HardhatUserConfig = {
   },
   namedAccounts: {
     deployer: 0,
-    tokenOwner: 1,
+  },
+  etherscan: {
+    apiKey: `${process.env.ETHERSCAN_API_KEY}`,
+    customChains: [{
+      network: "iotex",
+      chainId: 4689,
+      urls: {
+        apiURL: "https://iotexscout.io/api",
+        browserURL: "https://iotexscout.io"
+      }
+    }, {
+      network: "iotex_test",
+      chainId: 4690,
+      urls: {
+        apiURL: "https://testnet.iotexscout.io/api",
+        browserURL: "https://testnet.iotexscout.io"
+      }
+    }]
   },
   solidity: {
     compilers: [
@@ -49,6 +67,9 @@ const config: HardhatUserConfig = {
             runs: 10000,
           },
         },
+      },
+      {
+        version: "0.8.9", //for proxy
       },
     ],
   },

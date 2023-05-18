@@ -10,7 +10,10 @@ yarn hardhat run scripts/deploy.ts --network mainnet
 yarn hardhat run scripts/upgrade.ts --network mainnet
 ```
 
-## verify
+## verify proxy
+upload solc-input.json
+
+## verify implementation
 ```
 yarn hardhat verify --network mainnet 0x...
 ```
