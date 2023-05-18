@@ -17,7 +17,7 @@ contract IIP15ManagerV1 is Initializable, OwnableUpgradeable, UUPSUpgradeable {
 
     event ContractRegistered(address contractAddress, address recipient);
     event ContractApproved(address contractAddress);
-    event ContractUnapproved(address contractAddress);
+    event ContractDisapproved(address contractAddress);
     event ContractRemoved(address contractAddress);
 
     function initialize() public initializer {
@@ -51,7 +51,7 @@ contract IIP15ManagerV1 is Initializable, OwnableUpgradeable, UUPSUpgradeable {
         require(contractInfo.recipient != address(0), "Contract is not registered");
         require(contractInfo.isApproved, "Contract is not approved");
         contractInfo.isApproved = false;
-        emit ContractUnapproved(_contractAddress);
+        emit ContractDisapproved(_contractAddress);
     }
 
     function removeContract(address _contractAddress) external onlyOwner {
