@@ -4,10 +4,10 @@ import { load, save } from './util'
 async function main(){
     //await run("compile");
     const [ owner ] = await ethers.getSigners()
-    const height = await ethers.provider.getBlockNumber()
     const iip15Contract = await ethers.getContractFactory("IIP15ManagerV1"); 
     const iip15 = await upgrades.deployProxy(iip15Contract, { kind: 'uups', initializer: "initialize" });
     await iip15.deployed();
+    const height = await ethers.provider.getBlockNumber()
 
     console.log("deployed proxy at ",iip15.address, "Owner: ", owner.address);
     const impl = await upgrades.erc1967.getImplementationAddress(iip15.address);
